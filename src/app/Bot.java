@@ -1,14 +1,16 @@
 package app;
 
 import java.io.FileReader;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import app.commands.Ping;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -19,7 +21,7 @@ public class Bot extends ListenerAdapter {
         JSONObject config = (JSONObject) new JSONParser().parse(new FileReader("config.json"));
 
         String token = (String) config.get("token");
-        prefix = (char) config.get("prefix");
+        prefix = config.get("prefix").toString().charAt(0);
 
         new JDABuilder(token)
             .addEventListeners(new Bot())
@@ -33,14 +35,7 @@ public class Bot extends ListenerAdapter {
         Message msg = event.getMessage();
         String text = msg.getContentRaw();
         if (text.charAt(0) == prefix) {
-            text = text.substring(1);
-            if (text.equals("ping")) {
-                MessageChannel channel = event.getChannel();
-                long time = System.currentTimeMillis();
-                channel.sendMessage("Pong!").queue(response -> {
-                    response.editMessageFormat("Pong: %d ms", System.currentTimeMillis() - time).queue();
-                });
-            }
+            new CommandSelector(event, text);
         }
     }
 }
