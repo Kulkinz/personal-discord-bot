@@ -2,6 +2,7 @@ package app;
 
 import java.util.Calendar;
 
+import app.commands.Connor;
 import app.commands.Isaiah;
 import app.commands.Ping;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -20,6 +21,9 @@ public class CommandSelector {
                 break;
             case "isaiah":
                 new Isaiah(event);
+                break;
+            case "connor":
+                new Connor(event);
                 break;
         }
     }
