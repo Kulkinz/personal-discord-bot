@@ -34,7 +34,11 @@ public class Bot extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         Message msg = event.getMessage();
         String text = msg.getContentRaw();
-        if (text.charAt(0) != prefix) {
+        try {
+            if (text.charAt(0) != prefix) {
+                return;
+            }
+        } catch (Exception e) {
             return;
         }
         if (msg.getAuthor().isBot()) {
