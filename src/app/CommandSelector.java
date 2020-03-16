@@ -13,11 +13,8 @@ public class CommandSelector {
         String[] args = message.substring(1).trim().split(" ");
         String command = args[0];
         //message.content.slice(prefix.length).trim().split(/ +/g);
-        System.out.println(event.getAuthor() + " just tried to run " + message + " at " + Calendar.getInstance().getTime());
+        System.out.println(event.getAuthor() + " just tried to run " + command + " at " + Calendar.getInstance().getTime());
 
-        if (message.equals("ping")) {
-            new Ping(event);
-        }
         switch (command) {
             case "ping":
                 new Ping(event);
