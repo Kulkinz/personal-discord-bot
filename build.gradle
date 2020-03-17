@@ -1,6 +1,12 @@
-group 'app'
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
 
-apply plugin: 'java'
+mainClassName = "app.Bot"
+
+group 'app'
 
 sourceCompatibility = 1.8
 
@@ -9,7 +15,15 @@ repositories {
     jcenter()
 }
 
+jar { 
+   manifest {
+       attributes 'Class-Path': '/libs/Discord-Bot.jar' 
+   }
+}
+
 dependencies {
     compile 'net.dv8tion:JDA:4.1.1_101'
-    compile 'com.googlecode.json-simple'
+    // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
 }
