@@ -3,6 +3,7 @@ package app;
 import java.util.Calendar;
 
 import app.commands.Connor;
+import app.commands.Help;
 import app.commands.Isaiah;
 import app.commands.Ping;
 import app.commands.Roll;
@@ -58,6 +59,9 @@ public class CommandSelector {
 
                 System.out.println("Amount: " + amountToRoll + " Sides: " + sides + " Modifier: " + modifier);
                 new Roll(event, amountToRoll, sides, modifier);
+                break;
+            case "help":
+                new Help(event);
                 break;
         }
     }

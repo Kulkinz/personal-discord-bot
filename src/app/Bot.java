@@ -15,7 +15,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class Bot extends ListenerAdapter {
-    private static char prefix;
+    public static char prefix;
 
     public static void main(String[] args) throws Exception {
         JSONObject config = (JSONObject) new JSONParser().parse(new FileReader("config.json"));
